@@ -9,6 +9,15 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  borderRadius?: string;
+  children: React.ReactNode;
+  as?: React.ElementType; // Allow any valid React component or HTML element
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+}
+
 export function Button({
   borderRadius = "1.75rem",
   children,
@@ -18,16 +27,7 @@ export function Button({
   duration,
   className,
   ...otherProps
-}: {
-  borderRadius?: string;
-  children: React.ReactNode;
-  as?: React.ElementType;
-  containerClassName?: string;
-  borderClassName?: string;
-  duration?: number;
-  className?: string;
-  [key: string]: React.ReactNode;
-}) {
+}: ButtonProps) {
   return (
     <Component
       className={cn(
@@ -79,7 +79,7 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: React.ReactNode;
+  [key: string]: any; // Allow any additional props
 }) => {
   const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
@@ -135,4 +135,4 @@ export const MovingBorder = ({
       </motion.div>
     </>
   );
-}
+};
