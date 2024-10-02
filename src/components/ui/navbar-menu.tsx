@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
- 
+
 const transition = {
   type: "spring",
   mass: 0.5,
@@ -12,7 +12,7 @@ const transition = {
   restDelta: 0.001,
   restSpeed: 0.001,
 };
- 
+
 export const MenuItem = ({
   setActive,
   active,
@@ -59,7 +59,7 @@ export const MenuItem = ({
     </div>
   );
 };
- 
+
 export const Menu = ({
   setActive,
   children,
@@ -76,7 +76,7 @@ export const Menu = ({
     </nav>
   );
 };
- 
+
 export const ProductItem = ({
   title,
   description,
@@ -108,12 +108,18 @@ export const ProductItem = ({
     </Link>
   );
 };
- 
-export const HoveredLink = ({ children, ...rest }: React.ReactNode) => {
+
+interface HoveredLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+  href: string; // Make href required
+}
+
+export const HoveredLink: React.FC<HoveredLinkProps> = ({ children, href, ...rest }) => {
   return (
     <Link
+      href={href}
       {...rest}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+      className="text-neutral-700 dark:text-neutral-200 hover:text-black"
     >
       {children}
     </Link>

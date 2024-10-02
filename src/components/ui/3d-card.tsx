@@ -93,7 +93,7 @@ export const CardBody = ({
   );
 };
 
-export const CardItem = ({
+export const CardItem = <T extends React.ElementType = "div">({
   as: Tag = "div",
   children,
   className,
@@ -105,7 +105,7 @@ export const CardItem = ({
   rotateZ = 0,
   ...rest
 }: {
-  as?: React.ElementType;
+  as?: T;
   children: React.ReactNode;
   className?: string;
   translateX?: number | string;
@@ -114,8 +114,7 @@ export const CardItem = ({
   rotateX?: number | string;
   rotateY?: number | string;
   rotateZ?: number | string;
-  [key: string]: React.ReactNode;
-}) => {
+} & React.ComponentProps<T>) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
@@ -131,7 +130,7 @@ export const CardItem = ({
       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
   };
-
+  
   return (
     <Tag
       ref={ref}

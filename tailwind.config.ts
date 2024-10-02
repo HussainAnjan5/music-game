@@ -1,3 +1,4 @@
+// Import necessary modules
 import type { Config } from 'tailwindcss';
 import svgToDataUri from 'mini-svg-data-uri';
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
@@ -20,20 +21,20 @@ interface MatchUtilities {
 function addVariablesForColors({ addBase, theme }: PluginUtils) {
   const themeColors = theme('colors');
   
-// Define a recursive type to handle nested color objects
-type NestedColorObject = Record<string, string | NestedColorObject>;
+  // Define a recursive type to handle nested color objects
+  type NestedColorObject = Record<string, string | NestedColorObject>;
 
-const flattenColors = (obj: NestedColorObject, parentKey = ''): Record<string, string> => {
-  return Object.entries(obj).reduce((acc, [key, value]) => {
-    const newKey = parentKey ? `${parentKey}-${key}` : key;
-    if (typeof value === 'string') {
-      acc[newKey] = value;
-    } else {
-      Object.assign(acc, flattenColors(value, newKey));
-    }
-    return acc;
-  }, {} as Record<string, string>);
-};
+  const flattenColors = (obj: NestedColorObject, parentKey = ''): Record<string, string> => {
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+      const newKey = parentKey ? `${parentKey}-${key}` : key;
+      if (typeof value === 'string') {
+        acc[newKey] = value;
+      } else {
+        Object.assign(acc, flattenColors(value, newKey));
+      }
+      return acc;
+    }, {} as Record<string, string>);
+  };
 
   const allColors = flattenColors(themeColors);
   const newVars = Object.fromEntries(
@@ -69,6 +70,7 @@ function addSvgPatterns({ matchUtilities, theme }: MatchUtilities) {
   );
 }
 
+// Tailwind CSS configuration
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -158,7 +160,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [addVariablesForColors, addSvgPatterns]
+  plugins: [addVariablesForColors, addSvgPatterns],
 };
 
 export default config;
