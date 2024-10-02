@@ -13,19 +13,17 @@ function MusicSchoolContactUs() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-white  dark:bg-gray-900 py-12 pt-36 relative">
-      {' '}
+    <div className="min-h-screen bg-gray-100 text-white dark:bg-gray-900 py-12 pt-36 relative">
       {/* Ensure the container is relative */}
       {/* BackgroundBeams with adjusted z-index */}
       <Meteors className="absolute top-0 left-0 w-full h-full z-0" />
       {/* Content with higher z-index */}
       <div className="max-w-2xl mx-auto p-4 relative z-10">
-        {' '}
         {/* Add relative and z-10 to bring content to the front */}
-        <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">
+        <h1 className="text-3xl md:text-7xl text-center font-sans font-bold mb-8 text-white">
           Contact Us
         </h1>
-        <p className="text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center">
+        <p className="text-neutral-500 max-w-lg mx-auto my-2 text-base md:text-lg text-center">
           We&apos;re here to help with any questions about our courses,
           programs, or events. Reach out and let us know how we can assist you
           in your musical journey.
@@ -49,7 +47,7 @@ function MusicSchoolContactUs() {
           ></textarea>
           <button
             type="submit"
-            className="px-6 py-2 rounded-lg bg-teal-500 text-white font-medium hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+            className="w-full px-6 py-2 rounded-lg bg-teal-500 text-white font-medium hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
           >
             Send Message
           </button>
